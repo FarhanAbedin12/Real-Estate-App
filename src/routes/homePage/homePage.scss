@@ -14,7 +14,12 @@
       justify-content: center;
       gap: 50px;
       height: 100%;
-
+      p {
+        font-size: 19px; // Increase the text size here
+        line-height: 1.6; // Optional: Adjust line spacing for better readability
+        color: #333; // Optional: Change the text color
+        margin: 10px 0; // Adjust spacing if needed
+      }
       @include lg{
         padding-right: 50px;
       }
@@ -28,7 +33,7 @@
       }
 
       .title {
-        font-size: 64px;
+        font-size: 55px;
 
         @include lg {
           font-size: 48px;
@@ -42,9 +47,8 @@
         @include sm {
           display: none;
         }
-
         h1 {
-          font-size: 36px;
+          font-size: 25px;
 
           @include lg {
             font-size: 32px;
@@ -61,7 +65,7 @@
 
   .imgContainer {
     flex: 2;
-    background-color: #fcf5f3;
+    background-color: #fcf5f3;  //right 
     position: relative;
     display: flex;
     align-items: center;
