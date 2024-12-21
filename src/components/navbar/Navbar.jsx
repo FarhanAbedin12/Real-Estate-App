@@ -22,7 +22,7 @@ function Navbar() {
         {user ? (
           <div className="user">
             <img
-              src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              src="https://www.transparentpng.com/details/ninja-nassau-weekly-picture_28300.html"
               alt=""
             />
             <span>Unknown</span> {/* here */}

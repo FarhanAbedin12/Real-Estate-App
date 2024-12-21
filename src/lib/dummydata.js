@@ -2,7 +2,7 @@ export const listData = [
     {
     id: 1,
     title: 'A great Apartment Next to the Beach!',
-    images: ['https://images.pexels.com/photos/1239297/pexels-photo-1239297.jpeg'],
+    images: "https://images.pexels.com/photos/1239297/pexels-photo-1239297.jpeg",
     bedroom: 2,
     bathroom: 1,
     price: 1000,
@@ -13,7 +13,7 @@ export const listData = [
     {
     id: 2,
     title: 'Luxury Villa with Sea View',
-    images: ['https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg'],
+    images: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg",
     bedroom: 3,
     bathroom: 2,
     price: 2000,
@@ -24,7 +24,7 @@ export const listData = [
     {
     id: 3,
     title: 'Cozy Cottage in the Mountains',
-    images: ['https://images.pexels.com/photos/2802021/pexels-photo-2802021.jpeg'],
+    images: 'https://images.pexels.com/photos/2802021/pexels-photo-2802021.jpeg',
     bedroom: 2,
     bathroom: 1,
     price: 800,
