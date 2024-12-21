@@ -4,23 +4,23 @@ import "./homePage.scss";
 function HomePage() {
   return (
     <div className="homePage">
-      <div className="textContainer">
-        <div className="wrapper">
-          <h1 className="title">Find Real Estate & Get Your Dream Place</h1>
+      <div className="textContainer"> 
+        <div className="wrapper"> 
+          <h1 className="title">Find Your Perfect Place To Call Home And Thrive</h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos
-            explicabo suscipit cum eius, iure est nulla animi consequatur
-            facilis id pariatur fugit quos laudantium temporibus dolor ea
-            repellat provident impedit!
+            Find your dream home with our easy-to-use Real Estate App! Explore a variety of 
+            properties with detailed descriptions and high-quality images. Use advanced 
+            search filters and connect directly with agents or sellers for seamless 
+            communication. Start your property search today!
           </p>
           <SearchBar />
           <div className="boxes">
             <div className="box">
-              <h1>16+</h1>
+              <h1>10+</h1>
               <h2>Years of Experience</h2>
             </div>
             <div className="box">
-              <h1>200</h1>
+              <h1>50</h1>
               <h2>Award Gained</h2>
             </div>
             <div className="box">

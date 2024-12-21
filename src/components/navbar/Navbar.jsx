@@ -11,21 +11,20 @@ function Navbar() {
       <div className="left">
         <a href="/" className="logo">
           <img src="/logo.png" alt="" />
-          <span>Real Estate</span> {/*here*/}
+          <span>RealEstate</span>
         </a>
         <a href="/">Home</a>
         <a href="/">About</a>
-        <a href="/">Contact</a>
-        <a href="/">Agents</a>
+        <a href="/list">Properties</a>
       </div>
       <div className="right">
         {user ? (
           <div className="user">
             <img
-              src="https://www.transparentpng.com/details/ninja-nassau-weekly-picture_28300.html"
+              src="https://www.hindustantimes.com/ht-img/img/2023/11/23/1600x900/IMG_7289_1700764001828_1700764009852.jpeg"
               alt=""
             />
-            <span>Unknown</span> {/* here */}
+            <span>Random</span>
             <Link to="/profile" className="profile">
               <div className="notification">3</div>
               <span>Profile</span>
@@ -49,10 +48,9 @@ function Navbar() {
         <div className={open ? "menu active" : "menu"}>
           <a href="/">Home</a>
           <a href="/">About</a>
-          <a href="/">Contact</a>
-          <a href="/">Agents</a>
-          <a href="/">Sign in</a>
-          <a href="/">Sign up</a>
+          <a href="/list">Properties</a>
+          <a href="/login">Sign in</a>
+          <a href="/register">Sign up</a>
         </div>
       </div>
     </nav>

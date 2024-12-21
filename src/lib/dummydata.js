@@ -246,8 +246,8 @@ export const listData = [
     
     export const userData = {
     id:"1",
-    name:'Yusuf Koroglu',
-    img:'https://media.licdn.com/dms/image/v2/D4D35AQGmT4FP6dxzFQ/profile-framedphoto-shrink_200_200/profile-framedphoto-shrink_200_200/0/1669987952817?e=1729177200&v=beta&t=jtmrCe8dR50Se34FYr1jTPEHMT9sVANivUeiXsJ52fM'
+    name:'Nanami',
+    img:'https://www.hindustantimes.com/ht-img/img/2023/11/23/1600x900/IMG_7289_1700764001828_1700764009852.jpeg'
     }
     
     export default listData;
