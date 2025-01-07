@@ -31,7 +31,8 @@ export const login = async (req, res) => {
     const user = await prisma.user.findUnique({
       where: { username },
     });
-    if (!user) return res.status(401).json({ message: "Invalid username!" });
+    if (!user) 
+      return res.status(401).json({ message: "Invalid username!" });
 
     //PASSWORD CHECK
     const isPasswordValid = await bcrypt.compare(password, user.password);
@@ -42,9 +43,14 @@ export const login = async (req, res) => {
     const age = 1000 * 60 * 60 * 24 * 7;
 
     //TOKEN CREATION
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET_KEY, {
+    const token = jwt.sign({ 
+      id: user.id 
+      
+    },
+      process.env.JWT_SECRET_KEY, {
       expiresIn: age,
     });
+    
     const {password: userPassword, ...userinfo} = user; 
     res
       .cookie("token", token, {
