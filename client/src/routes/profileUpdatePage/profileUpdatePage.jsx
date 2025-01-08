@@ -1,60 +1,34 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import UploadWidget from "../../components/uploadWidget/UploadWidget";
 import { AuthContext } from "../../context/AuthContext";
 import apiRequest from "../../lib/apiRequest";
 import "./profileUpdatePage.scss";
-import CloudinaryUploadWidget from "../../components/uploadWidget/UploadWidget";
-import { Cloudinary } from '@cloudinary/url-gen';
-import { AdvancedImage, responsive, placeholder } from '@cloudinary/react';
-
-
 
 function ProfileUpdatePage() {
-  const cloudName= "farhanjoy";
-  const uploadPreset= 'estate';
-
   const { currentUser, updateUser } = useContext(AuthContext);
   const [error, setError] = useState("");
-  const [avatar, setAvatar] = useState(currentUser.avatar);
-  const [publics, setPublic] = useState("");
+  const [avatar, setAvatar] = useState([]);
 
-  const cld = new Cloudinary({
-    cloud: {
-      cloudName,
-    },
-  });
   const navigate = useNavigate();
-  const uwConfig = {
-    cloudName,
-    uploadPreset,
-    multiple: false,
-    folder: 'avatar',
-    maxImageFileSize: 2000000,
-  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const formData = new FormData(e.target);
-    const username= formData.get("username")
-    const email= formData.get("email")
-    const password= formData.get("password")
-    
-
+    const { username, email, password } = Object.fromEntries(formData);
 
     try {
       const res = await apiRequest.put(`/user/${currentUser.id}`, {
         username,
         email,
         password,
-        avatar,
+        avatar: avatar[0],
       });
-
       updateUser(res.data);
       navigate("/profile");
-
     } catch (err) {
       console.log(err);
-      setError(err.res.data.message);
+      setError(err.response.data.message);
     }
   };
 
@@ -91,25 +65,21 @@ function ProfileUpdatePage() {
       </div>
       <div className="sideContainer">
         <img
-          src={avatar}
+          src={avatar[0] || currentUser.avatar || "/noavatar.jpg"}
           alt=""
           className="avatar"
         />
-
-      <CloudinaryUploadWidget 
-      uwConfig={uwConfig} setPublicId={setPublic} />
-      {publics && (
-        <div
-          className="image-preview"
-          style={{ width: '800px', margin: '20px auto' }}
-        >
-          <AdvancedImage
-            style={{ maxWidth: '100%' }}
-            cldImg={cld.image(publicId)}
-            plugins={[responsive(), placeholder()]}
-          />
-        </div>
-      )}
+        <UploadWidget
+          className="uploadButton"
+          uwConfig={{
+            cloudName: "farhanjoy",
+            uploadPreset: "estate",
+            multiple: false,
+            maxImageSize: 2000000,
+            folder: "avatars",
+          }}
+          setState={setAvatar}
+        />
       </div>
     </div>
   );
