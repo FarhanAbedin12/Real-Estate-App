@@ -4,6 +4,7 @@ import prisma from "../lib/prisma.js";
 
 export const register = async (req, res) => {
   const { username, email, password } = req.body;
+  
 
   try {
     //HASH PASSWORD
@@ -25,7 +26,7 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
   const { username, password } = req.body;
-
+  
   try {
     //USERNAME CHECK
     const user = await prisma.user.findUnique({
@@ -37,15 +38,16 @@ export const login = async (req, res) => {
     //PASSWORD CHECK
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
-    if (!isPasswordValid) return res.status(401).json({ message: "Invalid credentials!" });
+    if (!isPasswordValid) 
+      return res.status(401).json({ message: "Invalid credentials!" });
 
     //COOKIE HANDLING
     const age = 1000 * 60 * 60 * 24 * 7;
 
     //TOKEN CREATION
     const token = jwt.sign({ 
-      id: user.id 
-      
+      id: user.id,  
+      isAdmin: true   
     },
       process.env.JWT_SECRET_KEY, {
       expiresIn: age,
