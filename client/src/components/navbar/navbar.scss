@@ -1,5 +1,4 @@
-@use "../../responsive" as *;
-
+@import "../../responsive.scss";
 
 nav {
   height: 100px;
@@ -8,7 +7,7 @@ nav {
   align-items: center;
 
   a {
-    transition: all 2s ease;
+    transition: all 0.4s ease;
 
     @include sm {
       display: none;
@@ -51,25 +50,26 @@ nav {
     flex: 2;
     display: flex;
     align-items: center;
-    justify-content: flex-end; 
+    justify-content: flex-end;
     background-color: #fcf5f3;
-    height: 100%;  //Navbar right er height
+    height: 100%;
+    z-index: 9;
 
     @include md {
-      background-color: transparent; //no bg when medium
+      background-color: transparent;
     }
 
     a {
       padding: 12px 24px;
-      margin: 25px;
+      margin: 20px;
     }
 
-    .user{
+    .user {
       display: flex;
       align-items: center;
       font-weight: bold;
 
-      img{
+      img {
         width: 40px;
         height: 40px;
         border-radius: 50%;
@@ -77,20 +77,27 @@ nav {
         margin-right: 20px;
       }
 
-      span{
-        @include sm{
+      span {
+        @include sm {
           display: none;
         }
       }
 
-      .profile{
+      .profile {
+        border-radius: 5px;
         padding: 12px 24px;
         background-color: #fece51;
         cursor: pointer;
         border: none;
         position: relative;
-        
-        .notification{
+        &:hover {
+          background-color: #fece51;
+          color: white;
+          box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+          transition: 0.3s;
+        }
+
+        .notification {
           position: absolute;
           top: -8px;
           right: -8px;
@@ -103,12 +110,16 @@ nav {
           align-items: center;
           justify-content: center;
         }
-
       }
     }
 
     .register {
       background-color: #fece51;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      height: 100%;
+      z-index: 9;
     }
 
     .menuIcon {
@@ -129,17 +140,17 @@ nav {
     .menu {
       position: absolute;
       top: 0;
-      right: -50%;  //so that it does not show on screen until the menu is clicked
+      right: -50%;
       background-color: black;
       color: white;
       height: 100vh;
-      width: 40%;
-      transition: all 2s ease; //slides slowly
+      width: 50%;
+      transition: all 1s ease;
       display: flex;
       flex-direction: column;
-      align-items: center; //left right
-      justify-content: center; //top bottom
-      font-size: 20px;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
 
       &.active {
         right: 0;

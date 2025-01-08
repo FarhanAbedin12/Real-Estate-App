@@ -1,40 +1,47 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import List from "../../components/list/List";
 import apiRequest from "../../lib/apiRequest";
 import "./profilePage.scss";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 function ProfilePage() {
+  const {updateUser, currentUser}= useContext(AuthContext)
+
   const navigate= useNavigate()
+
   const handleLogout=async ()=>{
     try{
-      const res= apiRequest.post("/auth/logout")
-      localStorage.removeItem("user")
+      await apiRequest.post("/auth/logout")
+      updateUser(null)
       navigate("/home")
     }catch(err){
       console.log(err)
     }
   }
   return (
-    <div className="profilePage">
+      <div className="profilePage">
       <div className="details">
         <div className="wrapper">
           <div className="title">
             <h1>User Information</h1>
-            <button>Update Profile</button>
+            <Link to = "/profile/update">
+              <button>Update Profile</button>
+            </Link>
+            
           </div>
           <div className="info">
             <span>
               Avatar:
               <img
-                src="https://www.hindustantimes.com/ht-img/img/2023/11/23/1600x900/IMG_7289_1700764001828_1700764009852.jpeg"
-                alt=""
+                src={currentUser.avatar|| "https://www.hindustantimes.com/ht-img/img/2023/11/23/1600x900/IMG_7289_1700764001828_1700764009852.jpeg"}
               />
             </span>
             <span>
-              Username: <b>Nanami</b>
+              Username: <b>{currentUser.username}</b>
             </span>
             <span>
-              E-mail: <b>joy@gmail.com</b>
+              E-mail: <b>{currentUser.email}</b>
             </span>
             <button onClick={handleLogout}>Logout</button>
           </div>
@@ -61,7 +68,7 @@ function ProfilePage() {
         </div>
       </div>
     </div>
-  );
+    )
 }
 
 export default ProfilePage;
