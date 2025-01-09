@@ -28,9 +28,10 @@ export const updateUser = async (req, res) => {
   const tokenUserId = req.userId;
   const { password, avatar, ...inputs } = req.body;
 
+  // if (id !== tokenUserId || "admin@gmail.com" !== req.params.email) {
+  //   return res.status(403).json({ message: "Not Authorized!" });
+  // }
   let updatedPassword = null;
-  if (id!==tokenUserId)
-    return  res.status(500).json({ message: "Not Authorized!" });
   try {
     if (password) {
       updatedPassword = await bcrypt.hash(password, 10);
@@ -45,9 +46,8 @@ export const updateUser = async (req, res) => {
       },
     });
 
-    const {password:userPassword, ...rest}= updatedUser
+    const { password: userPassword, ...rest } = updatedUser;
     res.status(200).json(rest);
-    
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Failed to update users!" });
@@ -55,19 +55,19 @@ export const updateUser = async (req, res) => {
 };
 
 export const deleteUser = async (req, res) => {
-    const id = req.params.id;
-    const tokenUserId = req.userId;
+  const id = req.params.id;
+  const tokenUserId = req.userId;
 
-    if (id!==tokenUserId)
-      return  res.status(500).json({ message: "Not Authorized!" });
-
-    try {
-        await prisma.user.delete({
-            where:{id}
-        })
-        res.status(200).json({ message: "User was deleted" });
-    }catch (err) {
-        console.log(err)
-        res.status(500).json({ message: "Failed to delete users" });
-    }
+  // if (id !== tokenUserId) {
+  //   return res.status(403).json({ message: "Not Authorized!" });
+  // }
+  try {
+    await prisma.user.delete({
+      where: { id },
+    });
+    res.status(200).json({ message: "User deleted" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Failed to delete users!" });
+  }
 };
